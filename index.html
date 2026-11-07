@@ -642,7 +642,6 @@ function renderKPIs(){
   const media = FILTERED_DATA.filter(d=>d.prioridadKey==='media').length;
   const baja = FILTERED_DATA.filter(d=>d.prioridadKey==='baja').length;
   const prom = total ? (FILTERED_DATA.reduce((a,d)=>a+d.puntuacion,0)/total).toFixed(1) : "0.0";
-  const sinResp = FILTERED_DATA.filter(d=>!d.responsable || d.responsable==="Sin asignar").length;
 
   document.getElementById('kpiTotal').textContent = total;
   document.getElementById('kpiAlta').textContent = alta;
