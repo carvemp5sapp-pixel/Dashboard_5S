@@ -556,7 +556,7 @@ async function loadData(){
 
     RAW_DATA = rows.map(r => ({
       id: r['ID'],
-      fotoAntes:      fotoAntes: convertirLinkDrive(r['Foto antes'] || ''),
+      fotoAntes: convertirLinkDrive(r['Foto antes'] || ''),
       descripcion: r['Descripcion del hallazgo'] || 'Sin descripción',
       zona: r['Proceso / Zona'] || 'Sin zona',
       lugarExacto: r['lugar exacto'] || '',
@@ -569,9 +569,9 @@ async function loadData(){
       prioridadKey: getPrioridadKey(r['Prioridad TPM']),
       responsable: r['Responsable'] || 'Sin asignar',
       equipo5s: r['EQUIPO 5Ss'] || '',
-      fotoDespues:      fotoDespues: convertirLinkDrive(r['Foto despues'] || '')
+      fotoDespues: convertirLinkDrive(r['Foto despues'] || '')
     }));
-
+    
     FILTERED_DATA = [...RAW_DATA];
     populateFilterOptions();
     renderAll();
