@@ -530,7 +530,14 @@ const PRIORIDAD_LABELS = {
   'media':'Media (B) - Trimestral',
   'baja':'Observación (D)'
 };
-
+function convertirLinkDrive(url){
+  if(!url) return '';
+  const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if(match && match[1]){
+    return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+  }
+  return url;
+}
 let RAW_DATA = [];
 let FILTERED_DATA = [];
 let currentPage = 1;
@@ -549,7 +556,7 @@ async function loadData(){
 
     RAW_DATA = rows.map(r => ({
       id: r['ID'],
-      fotoAntes: r['Foto antes'] || '',
+      fotoAntes:      fotoAntes: convertirLinkDrive(r['Foto antes'] || ''),
       descripcion: r['Descripcion del hallazgo'] || 'Sin descripción',
       zona: r['Proceso / Zona'] || 'Sin zona',
       lugarExacto: r['lugar exacto'] || '',
@@ -562,7 +569,7 @@ async function loadData(){
       prioridadKey: getPrioridadKey(r['Prioridad TPM']),
       responsable: r['Responsable'] || 'Sin asignar',
       equipo5s: r['EQUIPO 5Ss'] || '',
-      fotoDespues: r['Foto despues'] || ''
+      fotoDespues:      fotoDespues: convertirLinkDrive(r['Foto despues'] || '')
     }));
 
     FILTERED_DATA = [...RAW_DATA];
