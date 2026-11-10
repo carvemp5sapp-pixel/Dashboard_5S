@@ -537,6 +537,7 @@ function convertirLinkDrive(url){
     return `https://drive.google.com/uc?export=view&id=${match[1]}`;
   }
   return '';
+}
 
 let RAW_DATA = [];
 let FILTERED_DATA = [];
@@ -571,7 +572,7 @@ async function loadData(){
       equipo5s: r['EQUIPO 5Ss'] || '',
       fotoDespues: convertirLinkDrive(r['Foto despues'] || '')
     }));
-    
+
     FILTERED_DATA = [...RAW_DATA];
     populateFilterOptions();
     renderAll();
